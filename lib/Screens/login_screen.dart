@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -13,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
     double height=MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
         height: height,
@@ -21,11 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // Container(
-              //   width: width,
-              //   height: height*0.45,
-              //
-              // ),
+              Container(
+                width: width,
+                height: height*0.45,
+                   // child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
+                child:
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
