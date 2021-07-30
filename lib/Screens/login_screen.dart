@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: width,
                 height: height*0.45,
                    // child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
-                child:Image.asset('/assets/apptime_anime.gif',fit: BoxFit.cover)
+                child:Image.asset('assets/APPTIME.png',fit: BoxFit.cover)
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -42,27 +42,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 30.0,),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  suffixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+              Padding(
+
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    suffixIcon: Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 20.0,),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  suffixIcon: Icon(Icons.visibility_off),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    suffixIcon: Icon(Icons.visibility_off),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 30.0,),
+              SizedBox(height: 10.0,),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
