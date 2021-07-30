@@ -163,7 +163,7 @@ class _landingPageState extends State<landingPage>  with SingleTickerProviderSta
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder:
                       (context) =>
-                          SignupPage()
+                          LoginScreen()
                       ) );
                     },
                   child: Text(
