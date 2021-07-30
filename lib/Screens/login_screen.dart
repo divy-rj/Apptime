@@ -19,13 +19,13 @@ class _LoginScreenState extends State<LoginScreen> {
         width: width,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: width,
-                height: height*0.45,
-
-              ),
+              // Container(
+              //   width: width,
+              //   height: height*0.45,
+              //
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(

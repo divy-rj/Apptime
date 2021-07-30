@@ -29,7 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   app_usage: ^2.0.0
-
+  avatar_glow: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
