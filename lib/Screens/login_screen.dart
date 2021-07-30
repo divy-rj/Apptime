@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'home_screen.dart';
+import 'logon_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
 
@@ -27,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: width,
                 height: height*0.45,
                    // child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
-                child:Image.asset('assets/apptime_anime.gif',fit:BoxFit.cover)
+                child:Image.asset('/assets/apptime_anime.gif',fit: BoxFit.cover)
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -68,7 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text('Forget password?',style: TextStyle(fontSize: 12.0),),
                     ElevatedButton(
                       child: Text('Login'),
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder:
+                                (context) =>
+                                MyHomePage()
+                            ) );
+                      },
                     ),
                   ],
                 ),
@@ -76,19 +85,28 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height:20.0),
               GestureDetector(
                 onTap: (){
-                 
+
                 },
-                child: Text.rich(
-                  TextSpan(
-                      text: 'Don\'t have an account',
-                      children: [
-                        TextSpan(
-                          text: 'Signup',
-                          style: TextStyle(
-                              color: Color(0xffEE7B23)
+                child: GestureDetector(
+                 onTap:(){
+                Navigator.pushReplacement(context,
+                MaterialPageRoute(builder:
+                (context) =>
+                SignupPage()
+                ) );
+                 },
+                  child: Text.rich(
+                    TextSpan(
+                        text: 'Don\'t have an account',
+                        children: [
+                          TextSpan(
+                            text: 'Signup',
+                            style: TextStyle(
+                                color: Color(0xffEE7B23)
+                            ),
                           ),
-                        ),
-                      ]
+                        ]
+                    ),
                   ),
                 ),
               ),

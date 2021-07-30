@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
 import 'login_screen.dart';
+import 'logon_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -162,7 +163,7 @@ class _landingPageState extends State<landingPage>  with SingleTickerProviderSta
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder:
                       (context) =>
-                          LoginScreen()
+                          SignupPage()
                       ) );
                     },
                   child: Text(
@@ -206,7 +207,7 @@ class _landingPageState extends State<landingPage>  with SingleTickerProviderSta
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
         (context) =>
-            LoginScreen()
+            SignupPage()
         ) );
       },
       child: Center(
