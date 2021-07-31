@@ -42,8 +42,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-        color: Colors.white,
-        child:FlutterLogo(size:MediaQuery.of(context).size.height*0.24)
+        color: Color(0xFF8185E2),
+        child:Image.asset('assets/APPTIME.png',fit: BoxFit.cover),
     );
   }
 }
@@ -96,11 +96,9 @@ class _landingPageState extends State<landingPage>  with SingleTickerProviderSta
                       elevation: 8.0,
                       shape: CircleBorder(),
                       child: CircleAvatar(
-                        backgroundColor: Colors.grey[100],
-                        child: FlutterLogo(
-                          size: 50.0,
-                        ),
-                        radius: 50.0,
+
+                        child: Image.asset('assets/APPTIME.png'),
+                        radius: 100.0,
                       )),
                 ),
                 DelayedAnimation(

@@ -2,7 +2,6 @@ package io.flutter.plugins;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
-import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
 
@@ -13,12 +12,7 @@ import io.flutter.embedding.engine.FlutterEngine;
  */
 @Keep
 public final class GeneratedPluginRegistrant {
-  private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
-    try {
-      flutterEngine.getPlugins().add(new dk.cachet.app_usage.AppUsagePlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin app_usage, dk.cachet.app_usage.AppUsagePlugin", e);
-    }
+    flutterEngine.getPlugins().add(new dk.cachet.app_usage.AppUsagePlugin());
   }
 }

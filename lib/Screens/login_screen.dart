@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       body: Container(
+        color: Colors.white70,
         height: height,
         width: width,
         child: SingleChildScrollView(
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: width,
                 height: height*0.45,
                    // child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
-                child:Image.asset('assets/APPTIME.png',fit: BoxFit.cover)
+                child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.cover)
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -109,8 +110,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextSpan(
                             text: 'Signup',
                             style: TextStyle(
+                                fontSize: 40,
                                 color: Color(0xffEE7B23)
                             ),
+
                           ),
                         ]
                     ),
