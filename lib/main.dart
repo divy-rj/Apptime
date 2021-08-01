@@ -8,10 +8,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColorDark: Colors.blue
+        primaryColorDark: Colors.purple
       ),
       home: SplashScreen(),
     );

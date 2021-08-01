@@ -11,24 +11,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<AppUsageInfo> _infos = [];
-
+  DateTime total_screentime;
   @override
   void initState() {
+    getUsageStats();
     super.initState();
+
   }
 
   void getUsageStats() async {
     try {
       DateTime endDate = new DateTime.now();
-      DateTime startDate = endDate.subtract(Duration(hours: 1));
+      DateTime startDate = endDate.subtract(Duration(hours:24));
       List<AppUsageInfo> infoList = await AppUsage.getAppUsage(startDate, endDate);
       setState(() {
         _infos = infoList;
       });
-
-      for (var info in infoList) {
-        print(info.toString());
-      }
+      
+      // for (var info in infoList) {
+      //   if(info.appName != 'apptime'){
+      //     total_screentime.add(info.usage);
+      //   }
+      //   print(total_screentime);
+      // }
     } on AppUsageException catch (exception) {
       print(exception);
     }
@@ -39,8 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('App Usage Example'),
-          backgroundColor: Colors.green,
+          title: const Text('AppTime'),
+          backgroundColor: Colors.deepPurpleAccent,
         ),
         body: ListView.builder(
             itemCount: _infos.length,
@@ -49,9 +54,66 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text(_infos[index].appName),
                   trailing: Text(_infos[index].usage.toString()));
             }),
-        floatingActionButton: FloatingActionButton(
-            onPressed: getUsageStats, child: Icon(Icons.file_download)),
-      ),
+       
+        drawer:Drawer(
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: [
+
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    child: Row(
+
+                        children: [
+                          CircleAvatar(child: Icon(Icons.account_circle,size: 70,color: Colors.white,),
+                            maxRadius: 50,backgroundColor: Colors.deepPurpleAccent,)  ,
+                          SizedBox(width: 12,height: 30,),
+                          Text("Dani Daniels",style: TextStyle(fontSize: 20),)
+                       ]
+                    ),
+
+                  ),
+                  ListTile(
+                    title: const Text('Account Info'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  Divider(indent: 2,color: Colors.black,),
+                  ListTile(
+                    title: const Text('Tracker'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  Divider(indent: 2,color: Colors.black,),
+                  ListTile(
+                    title: const Text('Donate'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  Divider(indent: 2,color: Colors.black,),
+                  ListTile(
+                    trailing: Icon(Icons.logout),
+                    title: const Text('Logout'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  Divider(indent: 2,color: Colors.black,),
+                ],
+              ),
+            ),
+        ),
+        
     );
   }
 }
