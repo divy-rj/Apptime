@@ -1,7 +1,7 @@
 import 'package:app_usage/app_usage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import '../page/pie_chart_page.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
 
@@ -42,18 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('AppTime'),
           backgroundColor: Colors.deepPurpleAccent,
         ),
-        body: ListView.builder(
-            itemCount: _infos.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                  title: Text(_infos[index].appName),
-                  trailing: Text(_infos[index].usage.toString()));
-            }),
+
+
+        body:  homescreen(_infos),
        
         drawer:Drawer(
               child: ListView(
@@ -114,6 +111,38 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
         ),
         
+    );
+  }
+}
+class homescreen extends StatelessWidget {
+  List<AppUsageInfo> _infos;
+  homescreen(this._infos);
+  @override
+
+  Widget build(BuildContext context) {
+    final PageController controller = PageController(initialPage: 0);
+    return PageView(
+      /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+      /// Use [Axis.vertical] to scroll vertically.
+      scrollDirection: Axis.horizontal,
+      controller: controller,
+      children:  <Widget>[
+        Center(
+          child: ListView.builder(
+              itemCount: _infos.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                    title: Text(_infos[index].appName),
+                    trailing: Text(_infos[index].usage.toString()));
+              }),
+        ),
+        Center(
+          child:PieChartPage(),
+        ),
+        Center(
+          child: Text('Third Page'),
+        )
+      ],
     );
   }
 }
