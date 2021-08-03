@@ -1,53 +1,82 @@
+import 'package:app_usage/app_usage.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import '../widget/indicators_widget.dart';
 import '../widget/pie_chart_sections.dart';
 import 'package:flutter/material.dart';
 
 class PieChartPage extends StatefulWidget {
+  List<AppUsageInfo> _infos;
+  PieChartPage(this._infos);
   @override
-  State<StatefulWidget> createState() => PieChartPageState();
+  State<StatefulWidget> createState() => PieChartPageState(_infos);
 }
 
 class PieChartPageState extends State {
-  int touchedIndex;
+  List<AppUsageInfo> infos;
+  PieChartPageState(this.infos);
+  List<ChartData> chartData=[];
+  @override
+  void initState() {
+    for (var info in infos) {
+      if(info.appName != 'apptime'){
+        int time_mill= info.usage.inMilliseconds;
+
+        ChartData data=ChartData(info.appName,time_mill);
+        chartData.add(data);
+      }
+    }
+
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) => Card(
         child: Column(
           children: <Widget>[
             Expanded(
-              child: PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (pieTouchResponse) {
-                      // setState(() {
-                      //   if (pieTouchResponse.touchInput is FlLongPressEnd ||
-                      //       pieTouchResponse.touchInput is FlPanEnd) {
-                      //     touchedIndex = -1;
-                      //   } else {
-                      //     touchedIndex = pieTouchResponse.touchedSectionIndex;
-                      //   }
-                      //
-                      // });
-                    },
-                  ),
-                  borderData: FlBorderData(show: false),
-                  sectionsSpace: 0,
-                  centerSpaceRadius: 40,
-                  sections: getSections(touchedIndex),
-                ),
+              child:Container(
+                  child: SfCircularChart(
+                      legend: Legend(
+                        isVisible: true,
+                        // Legend title
+                        title: LegendTitle(
+                            text:'Apps',
+                            textStyle: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w900
+                            )
+                        ),
+                      ),
+                      series: <CircularSeries>[
+
+                        PieSeries<ChartData, String>(
+                          dataSource: chartData,
+                          xValueMapper: (ChartData data, _) => data.x,
+                          yValueMapper: (ChartData data, _) => data.y,
+                          dataLabelMapper:(ChartData data, _) => data.x,
+                          dataLabelSettings: DataLabelSettings(
+                              isVisible: true,
+                              showZeroValue: false,
+                              labelPosition: ChartDataLabelPosition.outside
+
+                          ),
+
+                        )
+                      ])
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: IndicatorsWidget(),
-                ),
-              ],
+                
             ),
           ],
         ),
       );
+}
+class ChartData {
+  ChartData(this.x, this.y,[this.color]);
+  final String x;
+  final int y;
+  final Color color;
 }

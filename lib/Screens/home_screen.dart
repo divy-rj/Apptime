@@ -28,12 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _infos = infoList;
       });
       
-      // for (var info in infoList) {
-      //   if(info.appName != 'apptime'){
-      //     total_screentime.add(info.usage);
-      //   }
-      //   print(total_screentime);
-      // }
+ 
     } on AppUsageException catch (exception) {
       print(exception);
     }
@@ -137,7 +132,7 @@ class homescreen extends StatelessWidget {
               }),
         ),
         Center(
-          child:PieChartPage(),
+          child:PieChartPage(_infos),
         ),
         Center(
           child: Text('Third Page'),
