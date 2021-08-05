@@ -29,8 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: width,
                 height: height*0.45,
-                   // child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
-                child:Image.asset('assets/APPTIME.png',fit: BoxFit.cover)
+                   child:Image.asset('assets/apptime_anime.gif',fit: BoxFit.contain)
+                //child:Image.asset('assets/APPTIME.png',fit: BoxFit.cover)
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

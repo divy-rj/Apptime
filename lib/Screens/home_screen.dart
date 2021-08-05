@@ -2,6 +2,8 @@ import 'package:app_usage/app_usage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../page/pie_chart_page.dart';
+import '../widget/getusage.dart';
+import '../page/bargraph.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
 
@@ -14,16 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime total_screentime;
   @override
   void initState() {
-    getUsageStats();
+    getUsage();
     super.initState();
 
   }
 
-  void getUsageStats() async {
+  void getUsage() async {
     try {
-      DateTime endDate = new DateTime.now();
-      DateTime startDate = endDate.subtract(Duration(hours:24));
-      List<AppUsageInfo> infoList = await AppUsage.getAppUsage(startDate, endDate);
+      List<AppUsageInfo> infoList = await getUsageStats(0);
       setState(() {
         _infos = infoList;
       });
@@ -135,7 +135,7 @@ class homescreen extends StatelessWidget {
           child:PieChartPage(_infos),
         ),
         Center(
-          child: Text('Third Page'),
+          child: BarChartSample1(),
         )
       ],
     );
