@@ -148,7 +148,7 @@ class BarChartSample1State extends State<BarChartSample1> {
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            y: largest+10,
+            y: largest+15,
             colors: [barBackgroundColor],
           ),
         ),
@@ -187,26 +187,54 @@ class BarChartSample1State extends State<BarChartSample1> {
               String weekDay;
               switch (group.x.toInt()) {
                 case 0:
-                  weekDay = 'Monday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-6);
+               weekDay= DateFormat('EEEE').format(endDate);
+               break;
+                  }
                 case 1:
-                  weekDay = 'Tuesday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-5);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 case 2:
-                  weekDay = 'Wednesday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-4);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 case 3:
-                  weekDay = 'Thursday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-3);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 case 4:
-                  weekDay = 'Friday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-2);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 case 5:
-                  weekDay = 'Saturday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day-1);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 case 6:
-                  weekDay = 'Sunday';
-                  break;
+                  {
+                    DateTime now = new DateTime.now();
+                    DateTime endDate = new DateTime(now.year,now.month,now.day);
+                    weekDay= DateFormat('EEEE').format(endDate);
+                    break;
+                  }
                 default:
                   throw Error();
               }
