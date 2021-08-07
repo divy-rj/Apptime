@@ -43,7 +43,7 @@ class BarChartSample1State extends State<BarChartSample1> {
         if(infoList.isEmpty)
           continue;
         for(var t in infoList){
-          if(t.appName=="apptime")
+          if(t.appName=="apptime" || t.appName=="nexuslauncher" )
             continue;
           totaltime[i]+=t.usage.inMinutes.toDouble();
         }
@@ -351,19 +351,47 @@ class BarChartSample1State extends State<BarChartSample1> {
           getTitles: (double value) {
             switch (value.toInt()) {
               case 0:
-                return 'M';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-6);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 1:
-                return 'T';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-5);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 2:
-                return 'W';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-4);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 3:
-                return 'T';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-3);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 4:
-                return 'F';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-2);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 5:
-                return 'S';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day-1);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               case 6:
-                return 'S';
+                {
+                  DateTime now = new DateTime.now();
+                  DateTime endDate = new DateTime(now.year,now.month,now.day);
+                  return DateFormat('EEEE').format(endDate).substring(0,3);
+                }
               default:
                 return '';
             }

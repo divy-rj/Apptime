@@ -98,6 +98,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///home/divy/snap/flutter/common/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -224,7 +230,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-08-05T16:51:46.892115Z",
+  "generated": "2021-08-07T07:04:24.998032Z",
   "generator": "pub",
   "generatorVersion": "2.13.1"
 }

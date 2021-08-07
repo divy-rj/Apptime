@@ -1,0 +1,37 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+	package
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:2:3-47
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:1-3:12
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		ADDED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
+		INJECTED from /home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
