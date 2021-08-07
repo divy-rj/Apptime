@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:apptime/storage/securestorage.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +17,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  var login = 0;
+  String name;
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3),
-            () {
-      if(login == 0) {
-          Navigator.pushReplacement(context,
+            () async{
+      await init();
+      if(name != 'login'){
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
                 landingPage()
@@ -31,13 +33,21 @@ class _SplashScreenState extends State<SplashScreen> {
           );
          }
       else{
-        MaterialPageRoute(builder:
-            (context) =>
-            MyHomePage()
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                MyHomePage()
+            )
         );
       }
         }
     );
+  }
+  Future init()async {
+    name = await UserSecureStorage.getStatus();
+    setState(() {
+      this.name = name;
+    });
   }
   @override
   Widget build(BuildContext context) {

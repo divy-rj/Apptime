@@ -1,7 +1,15 @@
+import 'package:apptime/storage/securestorage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'home_screen.dart';
 import 'login_screen.dart';
+
+TextEditingController nameController = TextEditingController();
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+TextEditingController cpasswordController = TextEditingController();
+
 
 class SignupPage extends StatelessWidget {
   @override
@@ -34,20 +42,14 @@ class SignupPage extends StatelessWidget {
                           fontSize: 15,
                           color: Colors.grey[700],
                         ),),
-                        SizedBox(height: 30,)
+                        SizedBox(height: 20,)
                       ],
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 40
+                          horizontal: 10.0
                       ),
-                      child: Column(
-                        children: [
-                          makeInput(label: "Email"),
-                          makeInput(label: "Password",obsureText: true),
-                          makeInput(label: "Confirm Pasword",obsureText: true)
-                        ],
-                      ),
+                      child: formField(),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -65,15 +67,38 @@ class SignupPage extends StatelessWidget {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height:60,
-                          onPressed: (){},
-                          color: Colors.deepPurpleAccent,
+                          onPressed: (){
+                            
+                          },
+                          color:Color(0xFF8185E2),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40)
                           ),
-                          child: Text("Sign Up",style: TextStyle(
-                            fontWeight: FontWeight.w600,fontSize: 16,
+                          child: GestureDetector(
+                            onTap: ()async{
+                              if(emailController != null || passwordController != null || cpasswordController != null || nameController != null){
+                                final snackBar = SnackBar(content: Text('Yay! Account Created!!Welcome:  ${nameController.text}!'));
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                await UserSecureStorage.setUsername(nameController.text);
+                                await UserSecureStorage.setPassword(passwordController.text);
+                                await UserSecureStorage.setEmail(emailController.text);
+                                await UserSecureStorage.setStatus('logout');
+                                Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder:
+                                    (context) =>
+                                    LoginScreen()
+                                ) );
+                              }
+                              else{
+                                final snackBar = SnackBar(content: Text('Incomplete Field ',style: TextStyle(color:Colors.white),),backgroundColor:Colors.red);
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }
+                            },
+                            child: Text("Sign Up",style: TextStyle(
+                              fontWeight: FontWeight.w600,fontSize: 16,
 
-                          ),),
+                            ),),
+                          ),
                         ),
                       ),
                     ),
@@ -90,20 +115,12 @@ class SignupPage extends StatelessWidget {
                                     LoginScreen()
                                 ) );
                           },
-                          child: GestureDetector(
-                            onTap: (){
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder:
-                                      (context) =>
-                                      LoginScreen()
-                                  ) );
-                            },
-                            child: Text("Login",style: TextStyle(
+                          child: Text("Login",style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18
                             ),),
                           ),
-                        ),
+                        
                       ],
                     )
                   ],
@@ -118,32 +135,107 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-Widget makeInput({label,obsureText = false}){
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(label,style:TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: Colors.black87
-      ),),
-      SizedBox(height: 5,),
-      TextField(
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey[400],
-            ),
-          ),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[400])
-          ),
-        ),
-      ),
-      SizedBox(height: 30,)
+class formField extends StatefulWidget {
+  const formField({Key key}) : super(key: key);
 
-    ],
-  );
+  @override
+  _formFieldState createState() => _formFieldState();
+}
+
+class _formFieldState extends State<formField> {
+  @override
+  Widget build(BuildContext context) {
+    return  SafeArea(
+      child: SingleChildScrollView(
+      child: Column(
+          children: [
+            SizedBox(height: 8.0,),
+            TextFormField(
+              controller: nameController,
+              decoration: InputDecoration(
+                    border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                    gapPadding: 4
+                    ),
+                labelText: "Name",
+                hintText: "Example:Apptime",
+              ),
+              keyboardType: TextInputType.name,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 10.0,),
+            TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                      gapPadding: 4
+                  ),
+                  labelText: "Email",
+                  hintText: "Example:Apptime@mail.com",
+                ),
+
+                keyboardType: TextInputType.emailAddress,
+                
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                   
+                  return null;
+                },
+
+            ),
+            SizedBox(height: 10.0,),
+            TextFormField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                    gapPadding: 4
+                ),
+                labelText: "Password",
+                hintText: "Example:Apptime@0202",
+
+              ),
+              // obscureText: true,
+              keyboardType: TextInputType.visiblePassword,
+
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return value.length <8 ? 'Your Password is too small':null;
+                return null;
+              },
+            ),
+            SizedBox(height: 10.0,),
+            TextFormField(
+              controller: cpasswordController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                    gapPadding: 4
+                ),
+                labelText: "Confirm Password",
+                hintText: "Example:Apptime@0202",
+              ),
+              obscureText: true,
+              keyboardType: TextInputType.visiblePassword,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if(passwordController.text != cpasswordController){
+                  return 'Both Passwords not equal';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 10.0,),
+          ],
+      ), ),
+    );
+  }
 }

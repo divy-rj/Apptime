@@ -1,4 +1,6 @@
 import 'package:app_usage/app_usage.dart';
+import 'package:apptime/storage/securestorage.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../page/pie_chart_page.dart';
@@ -13,14 +15,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<AppUsageInfo> _infos = [];
+  int _page = 0;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   DateTime total_screentime;
+  String name;
   @override
   void initState() {
     getUsage();
     super.initState();
-
+     init();
   }
 
+  Future init()async{
+    final name=await UserSecureStorage.getUsername();
+    setState(() {
+       this.name=name;
+    });
+
+  }
   void getUsage() async {
     try {
       List<AppUsageInfo> infoList = await getUsageStats(0);
@@ -41,74 +53,46 @@ class _MyHomePageState extends State<MyHomePage> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('AppTime'),
-          backgroundColor: Colors.deepPurpleAccent,
+          backgroundColor: Color(0xFF4D51BD),
         ),
 
 
-        body:  homescreen(_infos),
-       
-        drawer:Drawer(
-              child: ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
-                children: [
-
-                  DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                    ),
-                    child: Row(
-
-                        children: [
-                          CircleAvatar(child: Icon(Icons.account_circle,size: 70,color: Colors.white,),
-                            maxRadius: 50,backgroundColor: Colors.deepPurpleAccent,)  ,
-                          SizedBox(width: 12,height: 30,),
-                          Text("Dani Daniels",style: TextStyle(fontSize: 20),)
-                       ]
-                    ),
-
-                  ),
-                  ListTile(
-                    title: const Text('Account Info'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  Divider(indent: 2,color: Colors.black,),
-                  ListTile(
-                    title: const Text('Tracker'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  Divider(indent: 2,color: Colors.black,),
-                  ListTile(
-                    title: const Text('Donate'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  Divider(indent: 2,color: Colors.black,),
-                  ListTile(
-                    trailing: Icon(Icons.logout),
-                    title: const Text('Logout'),
-                    onTap: () {
-                      // Update the state of the app.
-                      // ...
-                    },
-                  ),
-                  Divider(indent: 2,color: Colors.black,),
-                ],
-              ),
-            ),
+        body: Builder(
+            builder: (context) {
+             if(_page ==1 ){
+               return homescreen(_infos);
+             }
+             else{
+               return homescreen(_infos);
+             }
+            },
         ),
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          items: <Widget>[
+            Icon(Icons.home, size: 30,color: Colors.white,),
+            Icon(Icons.app_blocking, size: 30,color: Colors.white,),
+            Icon(Icons.settings, size: 30,color: Colors.white,),
+            Icon(Icons.person, size: 30,color: Colors.white,),
+          ],
+          color: Color(0xFF4D51BD),
+          buttonBackgroundColor:Color(0xFF07335C),
+          backgroundColor: Colors.white,
+
+          onTap: (index) {
+            setState(() {
+              _page = index;
+            });
+          },
+        ),
+        ),
+
         
     );
   }
 }
+
+
 class homescreen extends StatelessWidget {
   List<AppUsageInfo> _infos;
   homescreen(this._infos);

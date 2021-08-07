@@ -1,3 +1,4 @@
+import 'package:apptime/storage/securestorage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -160,7 +161,22 @@ class _LoginScreenState extends State<LoginScreen> {
 // }
     TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-
+     String email;
+     String password;
+     @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    init();
+  }
+  Future init()async{
+    final email=await UserSecureStorage.getEmail();
+    final password=await UserSecureStorage.getPassword();
+    setState(() {
+      this.email=email;
+      this.password=password;
+    });
+  }
     @override
     Widget build(BuildContext context) {
       double width = MediaQuery.of(context).size.width;
@@ -223,15 +239,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: ElevatedButton(
                         //style: ButtonStyle(backgroundColor: Color(0xFF8185E2)),
                         child: Text('Login'),
-                        onPressed: () {
+                        onPressed: ()async{
                           print(nameController.text);
                           print(passwordController.text);
-
+                          print(email);
+                          print(password);
+                         if (nameController.text == email && passwordController.text == password) {
+                           await UserSecureStorage.setStatus('login');
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder:
                                   (context) =>
                                   MyHomePage()
-                              ) );
+                              ) ); }
+                         else{
+                           final snackBar = SnackBar(content: Text('Login Failed'));
+                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                         }
                         },
                       )),
                   Container(
