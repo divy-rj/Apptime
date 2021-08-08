@@ -240,10 +240,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         //style: ButtonStyle(backgroundColor: Color(0xFF8185E2)),
                         child: Text('Login'),
                         onPressed: ()async{
-                          print(nameController.text);
-                          print(passwordController.text);
-                          print(email);
-                          print(password);
                          if (nameController.text == email && passwordController.text == password) {
                            await UserSecureStorage.setStatus('login');
                           Navigator.pushReplacement(context,

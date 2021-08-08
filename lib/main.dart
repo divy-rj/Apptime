@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid: false,
+      checkerboardRasterCacheImages: false,
+      checkerboardOffscreenLayers: false,
 
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColorDark: Colors.purple
-      ),
       home: SplashScreen(),
     );
   }

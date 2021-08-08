@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:apptime/storage/UsersModel.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class UserSecureStorage{
       static final _storage=FlutterSecureStorage();
@@ -29,6 +32,9 @@ class UserSecureStorage{
       }
       static Future<String> getStatus()async{
         return await _storage.read(key: _keyStatus);
+      }
+      static Future deleteAll()async{
+        return await _storage.deleteAll();
       }
 
 }

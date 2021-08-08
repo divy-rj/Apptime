@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../page/pie_chart_page.dart';
 import '../widget/getusage.dart';
 import '../page/bargraph.dart';
+import 'acc_info.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
 
@@ -39,8 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _infos = infoList;
       });
-      
- 
+
+
     } on AppUsageException catch (exception) {
       print(exception);
     }
@@ -62,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
              if(_page ==1 ){
                return homescreen(_infos);
              }
+             else if(_page == 3){
+               return accountinfo(isEditing: false,);
+             }
              else{
                return homescreen(_infos);
              }
@@ -72,9 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
           items: <Widget>[
             Icon(Icons.home, size: 30,color: Colors.white,),
             Icon(Icons.app_blocking, size: 30,color: Colors.white,),
-            Icon(Icons.settings, size: 30,color: Colors.white,),
+            Icon(Icons.analytics, size: 30,color: Colors.white,),
             Icon(Icons.person, size: 30,color: Colors.white,),
           ],
+
           color: Color(0xFF4D51BD),
           buttonBackgroundColor:Color(0xFF07335C),
           backgroundColor: Colors.white,
@@ -87,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         ),
 
-        
+
     );
   }
 }

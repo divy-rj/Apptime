@@ -76,8 +76,11 @@ class SignupPage extends StatelessWidget {
                           ),
                           child: GestureDetector(
                             onTap: ()async{
-                              if(emailController != null || passwordController != null || cpasswordController != null || nameController != null){
-                                final snackBar = SnackBar(content: Text('Yay! Account Created!!Welcome:  ${nameController.text}!'));
+                              if(emailController != null && passwordController != null && cpasswordController != null && nameController != null &&
+                                  emailController.text != '' && passwordController.text != '' && cpasswordController.text != '' && nameController.text != '' &&
+                                 passwordController.text == cpasswordController.text){
+                                final snackBar = SnackBar(content: Text('Yay! Account Created!!Welcome:  ${nameController.text}!',
+                                  style: TextStyle(color:Colors.white),),backgroundColor:Colors.green);
                                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                 await UserSecureStorage.setUsername(nameController.text);
                                 await UserSecureStorage.setPassword(passwordController.text);
@@ -159,9 +162,10 @@ class _formFieldState extends State<formField> {
                 labelText: "Name",
                 hintText: "Example:Apptime",
               ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.name,
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null && value.isEmpty && value == '') {
                   return 'Please enter some text';
                 }
                 return null;
@@ -177,11 +181,11 @@ class _formFieldState extends State<formField> {
                   labelText: "Email",
                   hintText: "Example:Apptime@mail.com",
                 ),
-
+              autovalidateMode: AutovalidateMode.onUserInteraction,
                 keyboardType: TextInputType.emailAddress,
-                
+
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
+                  if (value == null && value.isEmpty && value == '') {
                     return 'Please enter some text';
                   }
                    
@@ -202,9 +206,9 @@ class _formFieldState extends State<formField> {
               ),
               // obscureText: true,
               keyboardType: TextInputType.visiblePassword,
-
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null && value.isEmpty && value == '') {
                   return 'Please enter some text';
                 }
                 return value.length <8 ? 'Your Password is too small':null;
@@ -221,10 +225,11 @@ class _formFieldState extends State<formField> {
                 labelText: "Confirm Password",
                 hintText: "Example:Apptime@0202",
               ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: true,
               keyboardType: TextInputType.visiblePassword,
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null && value.isEmpty && value == '') {
                   return 'Please enter some text';
                 }
                 if(passwordController.text != cpasswordController){
