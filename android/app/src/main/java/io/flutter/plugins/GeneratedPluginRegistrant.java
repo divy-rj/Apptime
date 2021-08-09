@@ -21,14 +21,14 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin app_usage, dk.cachet.app_usage.AppUsagePlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new fr.g123k.deviceapps.DeviceAppsPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin device_apps, fr.g123k.deviceapps.DeviceAppsPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new com.it_nomads.fluttersecurestorage.FlutterSecureStoragePlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_secure_storage, com.it_nomads.fluttersecurestorage.FlutterSecureStoragePlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin shared_preferences, io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin", e);
     }
   }
 }

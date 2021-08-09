@@ -1,6 +1,8 @@
 import 'package:app_usage/app_usage.dart';
+import 'package:apptime/storage/app_list.dart';
 import 'package:apptime/storage/securestorage.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:device_apps/device_apps.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../page/pie_chart_page.dart';
@@ -13,9 +15,11 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
+List<AppUsageInfo> _infos = [];
+List<Application> _apps =  [];
+List<Apps> list_apps=[];
 class _MyHomePageState extends State<MyHomePage> {
-  List<AppUsageInfo> _infos = [];
+
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   DateTime total_screentime;
@@ -34,14 +38,29 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
   }
+  List<Apps> getApps(){
+      List<Apps> appsList=[];
+      Apps listapp;
+      for (var info in _infos) {
+        for(var app in _apps) {
+          if (info.appName != 'apptime' && info.packageName == app.packageName) {
+
+            listapp=Apps(appName: app.appName,appUsage: info.usage.toString().substring(0, info.usage.toString().length-7));
+            appsList.add(listapp);
+          }
+        }
+      }
+      list_apps=appsList;
+  }
   void getUsage() async {
     try {
       List<AppUsageInfo> infoList = await getUsageStats(0);
+      List<Application> apps = await DeviceApps.getInstalledApplications(onlyAppsWithLaunchIntent: true, includeAppIcons: true, includeSystemApps: true);
       setState(() {
-        _infos = infoList;
+          _infos = infoList;
+                _apps = apps;
       });
-
-
+      await getApps();
     } on AppUsageException catch (exception) {
       print(exception);
     }
@@ -61,13 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Builder(
             builder: (context) {
              if(_page ==1 ){
-               return homescreen(_infos);
+               return homescreen(list_apps);
              }
              else if(_page == 3){
                return accountinfo(isEditing: false,);
              }
              else{
-               return homescreen(_infos);
+               return homescreen(list_apps);
              }
             },
         ),
@@ -99,8 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 class homescreen extends StatelessWidget {
-  List<AppUsageInfo> _infos;
-  homescreen(this._infos);
+
+  List<Apps> appsList;
+  homescreen(this.appsList);
   @override
 
   Widget build(BuildContext context) {
@@ -113,15 +133,17 @@ class homescreen extends StatelessWidget {
       children:  <Widget>[
         Center(
           child: ListView.builder(
-              itemCount: _infos.length,
+              itemCount: appsList.length,
+
               itemBuilder: (context, index) {
-                return ListTile(
-                    title: Text(_infos[index].appName),
-                    trailing: Text(_infos[index].usage.toString()));
-              }),
+                    return ListTile(
+                        title: Text(appsList[index].appName),
+                        trailing: Text(appsList[index].appUsage));
+                }
+                   )
         ),
         Center(
-          child:PieChartPage(_infos),
+          child:PieChartPage(_infos,_apps),
         ),
         Center(
           child: BarChartSample1(),

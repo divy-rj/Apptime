@@ -1,4 +1,5 @@
 import 'package:app_usage/app_usage.dart';
+import 'package:device_apps/device_apps.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../widget/indicators_widget.dart';
@@ -7,34 +8,40 @@ import 'package:flutter/material.dart';
 
 class PieChartPage extends StatefulWidget {
   List<AppUsageInfo> _infos;
-  PieChartPage(this._infos);
+  List<Application> apps ;
+  PieChartPage(this._infos,this.apps);
   @override
-  State<StatefulWidget> createState() => PieChartPageState(_infos);
+  State<StatefulWidget> createState() => PieChartPageState(_infos,this.apps);
 }
 
 class PieChartPageState extends State {
   List<AppUsageInfo> infos;
-  PieChartPageState(this.infos);
+  PieChartPageState(this.infos,this.apps);
   List<ChartData> chartData=[];
+  List<Application> apps = [];
   @override
   void initState() {
-    for (var info in infos) {
-      if(info.appName != 'apptime'){
-        int time_mill= info.usage.inMilliseconds;
 
-        ChartData data=ChartData(info.appName,time_mill);
-        chartData.add(data);
-      }
-    }
-
+    getchart();
     super.initState();
 
   }
-
+  void getchart(){
+    for (var info in infos) {
+      for(var app in apps) {
+        if (info.appName != 'apptime' && info.packageName == app.packageName) {
+          int time_mill = info.usage.inMilliseconds;
+          ChartData data = ChartData(app.appName, time_mill);
+          chartData.add(data);
+        }
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) => Card(
         child: Column(
           children: <Widget>[
+
             Expanded(
               child:Container(
                   child: SfCircularChart(

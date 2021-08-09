@@ -133,10 +133,10 @@ class _accountinfoState extends State<accountinfo> {
                       SizedBox(height: 40,),
                       Row(
                         children: [
-                          SizedBox(width: MediaQuery.of(context).size.width*0.60,),
+                          SizedBox(width: MediaQuery.of(context).size.width*0.61,),
                           Container(
                               height: 50,
-                              width:MediaQuery.of(context).size.width*0.25,
+                              width:MediaQuery.of(context).size.width*0.27,
                               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                               child: ElevatedButton(
                                   style: ButtonStyle(elevation: MaterialStateProperty.all<double>(8.0),
