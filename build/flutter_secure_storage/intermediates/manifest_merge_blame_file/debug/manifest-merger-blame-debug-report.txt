@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="18"
-8-->C:\Flutter_src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_secure_storage-4.2.1\android\src\main\AndroidManifest.xml
+8-->/home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->C:\Flutter_src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_secure_storage-4.2.1\android\src\main\AndroidManifest.xml
+9-->/home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-4.2.1/android/src/main/AndroidManifest.xml
 10
 11</manifest>

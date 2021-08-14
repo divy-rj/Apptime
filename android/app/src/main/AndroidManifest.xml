@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="com.example.apptime"  xmlns:tools="http://schemas.android.com/tools">
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
    <application
+        tools:replace="android:label"
         android:label="apptime"
         android:icon="@mipmap/ic_launcher">
         <activity

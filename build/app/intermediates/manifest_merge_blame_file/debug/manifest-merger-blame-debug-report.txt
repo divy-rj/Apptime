@@ -12,94 +12,133 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->D:\Flutter_Projects\Apptime\android\app\src\debug\AndroidManifest.xml:6:5-66
-14-->D:\Flutter_Projects\Apptime\android\app\src\debug\AndroidManifest.xml:6:22-64
+14-->/home/divy/StudioProjects/Apptime/android/app/src/debug/AndroidManifest.xml:6:5-66
+14-->/home/divy/StudioProjects/Apptime/android/app/src/debug/AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-15-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:3:5-5:46
-15-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:4:9-62
+15-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:4:5-6:46
+15-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:5:9-62
 16    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
-16-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:6:5-77
-16-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:6:22-74
-17
-18    <application
-18-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:7:4-50:19
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.1.0] C:\Users\KIIT\.gradle\caches\transforms-2\files-2.1\2e94107f30f39be366a17347c2bf100b\core-1.1.0\AndroidManifest.xml:24:18-86
-20        android:debuggable="true"
-21        android:icon="@mipmap/ic_launcher"
-21-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:9:9-43
-22        android:label="apptime" >
-22-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:8:9-32
-23        <activity
-23-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:10:9-44:20
-24            android:name="com.example.apptime.MainActivity"
-24-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:11:13-41
-25            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-25-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:14:13-163
-26            android:hardwareAccelerated="true"
-26-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:15:13-47
-27            android:launchMode="singleTop"
-27-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:12:13-43
-28            android:theme="@style/LaunchTheme"
-28-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:13:13-47
-29            android:windowSoftInputMode="adjustResize" >
-29-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:16:13-55
-30
-31            <!--
-32                 Specifies an Android theme to apply to this Activity as soon as
-33                 the Android process has started. This theme is visible to the user
-34                 while the Flutter UI initializes. After that, this theme continues
-35                 to determine the Window background behind the Flutter UI.
-36            -->
-37            <meta-data
-37-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:21:13-24:17
-38                android:name="io.flutter.embedding.android.NormalTheme"
-38-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:22:15-70
-39                android:resource="@style/NormalTheme" />
-39-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:23:15-52
-40
-41            <!--
-42                 Displays an Android View that continues showing the launch screen
-43                 Drawable until Flutter paints its first frame, then this splash
-44                 screen fades out. A splash screen is useful to avoid any visual
-45                 gap between the end of Android's launch screen and the painting of
-46                 Flutter's first frame.
-47            -->
-48
-49            <meta-data
-49-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:33:13-36:17
-50                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-50-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:34:15-79
-51                android:resource="@drawable/launch_background" />
-51-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:35:15-61
-52
-53            <intent-filter>
-53-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:37:13-43:29
-54                <action android:name="android.intent.action.MAIN" />
-54-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:38:17-68
-54-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:38:25-66
+16-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:7:5-77
+16-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:7:22-74
+17    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+17-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:11:5-81
+17-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:11:22-78
+18    <uses-permission android:name="android.permission.WAKE_LOCK" />
+18-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:12:5-68
+18-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:12:22-65
+19    <uses-permission android:name="android.permission.GET_TASKS" />
+19-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:13:5-68
+19-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:13:22-65
+20
+21    <application
+21-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:8:4-52:19
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.1.0] /home/divy/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:icon="@mipmap/ic_launcher"
+24-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:11:9-43
+25        android:label="apptime" >
+25-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:10:9-32
+26        <activity
+26-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:12:9-46:20
+27            android:name="com.example.apptime.MainActivity"
+27-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:13:13-41
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+28-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:16:13-163
+29            android:hardwareAccelerated="true"
+29-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:17:13-47
+30            android:launchMode="singleTop"
+30-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:14:13-43
+31            android:theme="@style/LaunchTheme"
+31-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:15:13-47
+32            android:windowSoftInputMode="adjustResize" >
+32-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:18:13-55
+33
+34            <!--
+35                 Specifies an Android theme to apply to this Activity as soon as
+36                 the Android process has started. This theme is visible to the user
+37                 while the Flutter UI initializes. After that, this theme continues
+38                 to determine the Window background behind the Flutter UI.
+39            -->
+40            <meta-data
+40-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:23:13-26:17
+41                android:name="io.flutter.embedding.android.NormalTheme"
+41-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:24:15-70
+42                android:resource="@style/NormalTheme" />
+42-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:25:15-52
+43
+44            <!--
+45                 Displays an Android View that continues showing the launch screen
+46                 Drawable until Flutter paints its first frame, then this splash
+47                 screen fades out. A splash screen is useful to avoid any visual
+48                 gap between the end of Android's launch screen and the painting of
+49                 Flutter's first frame.
+50            -->
+51
+52            <meta-data
+52-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:35:13-38:17
+53                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+53-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:36:15-79
+54                android:resource="@drawable/launch_background" />
+54-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:37:15-61
 55
-56                <category android:name="android.intent.category.LAUNCHER" />
-56-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:39:17-76
-56-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:39:27-74
-57                <category android:name="android.intent.category.HOME" />
-57-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:40:17-73
-57-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:40:27-70
-58                <category android:name="android.intent.category.DEFAULT" />
-58-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:41:17-76
-58-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:41:27-73
-59            </intent-filter>
-60        </activity>
-61        <!--
-62             Don't delete the meta-data below.
-63             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-64        -->
-65        <meta-data
-65-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:47:9-49:33
-66            android:name="flutterEmbedding"
-66-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:48:13-44
-67            android:value="2" />
-67-->D:\Flutter_Projects\Apptime\android\app\src\main\AndroidManifest.xml:49:13-30
-68    </application>
-69
-70</manifest>
+56            <intent-filter>
+56-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:39:13-45:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:40:17-68
+57-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:40:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:41:17-76
+59-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:41:27-74
+60                <category android:name="android.intent.category.HOME" />
+60-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:42:17-73
+60-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:42:27-70
+61                <category android:name="android.intent.category.DEFAULT" />
+61-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:43:17-76
+61-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:43:27-73
+62            </intent-filter>
+63        </activity>
+64        <!--
+65             Don't delete the meta-data below.
+66             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+67        -->
+68        <meta-data
+68-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:49:9-51:33
+69            android:name="flutterEmbedding"
+69-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:50:13-44
+70            android:value="2" />
+70-->/home/divy/StudioProjects/Apptime/android/app/src/main/AndroidManifest.xml:51:13-30
+71
+72        <receiver android:name="com.transistorsoft.tsbackgroundfetch.FetchAlarmReceiver" />
+72-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:16:9-92
+72-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:16:19-89
+73
+74        <service
+74-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:18:9-21:72
+75            android:name="com.transistorsoft.tsbackgroundfetch.FetchJobService"
+75-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:19:13-80
+76            android:exported="true"
+76-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:20:13-36
+77            android:permission="android.permission.BIND_JOB_SERVICE" />
+77-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:21:13-69
+78
+79        <receiver
+79-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:23:9-30:20
+80            android:name="com.transistorsoft.tsbackgroundfetch.BootReceiver"
+80-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:24:13-77
+81            android:exported="false" >
+81-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:25:13-37
+82            <intent-filter>
+82-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:26:13-29:29
+83                <action android:name="android.intent.action.BOOT_COMPLETED" />
+83-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:27:17-79
+83-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:27:25-76
+84                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+84-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:28:17-84
+84-->[com.transistorsoft:tsbackgroundfetch:0.5.4] /home/divy/.gradle/caches/transforms-2/files-2.1/dc21077b1018b3b809b0de0322803d60/jetified-tsbackgroundfetch-0.5.4/AndroidManifest.xml:28:25-81
+85            </intent-filter>
+86        </receiver>
+87    </application>
+88
+89</manifest>
