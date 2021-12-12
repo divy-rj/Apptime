@@ -1,7 +1,15 @@
+import 'dart:convert';
+
+import 'package:apptime/Screens/logon_screen.dart';
 import 'package:apptime/Screens/splashScreen.dart';
+import 'package:apptime/Services/httpService.dart';
+import 'package:apptime/storage/App_Db.dart';
+import 'package:apptime/storage/UsersModel.dart';
 import 'package:apptime/storage/securestorage.dart';
+import 'package:apptime/storage/storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class accountinfo extends StatefulWidget {
   accountinfo({Key key,@required this.isEditing}) : super(key: key);
@@ -11,25 +19,36 @@ class accountinfo extends StatefulWidget {
 }
 TextEditingController nameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
-
+TextEditingController old_passwordController =TextEditingController();
+TextEditingController new_passwordController =TextEditingController();
+TextEditingController confirm_new_passwordController =TextEditingController();
 class _accountinfoState extends State<accountinfo> {
-  String name;
-  String email;
+  Shared_Prefs shared_prefs=Shared_Prefs();
+  Services services=Services();
   String name_a;
+  String password_a;
+  var password;
+  String id;
   String email_a;
   @override
   void initState() {
     // TODO: implement initState
+
     super.initState();
     init();
+
   }
+
   Future init()async{
-    final name=await UserSecureStorage.getUsername()??'no name';
-    final email=await UserSecureStorage.getEmail()??'no mail';
+    Users user = await shared_prefs.getUsersInfo();
     setState(() {
-      emailController.text=email;
-      nameController.text=name;
+      emailController.text=user.email;
+      nameController.text=user.name;
+      this.password=user.password;
     });
+    // Data d;
+    // d=(await shared_prefs.getData()) as Data;
+    // print(d);
 
   }
   @override
@@ -43,6 +62,7 @@ class _accountinfoState extends State<accountinfo> {
               builder: (context) {
                 name_a=nameController.text;
                 email_a=emailController.text;
+                password_a=password;
                 if(widget.isEditing == false) {
                   return Column(
 
@@ -112,7 +132,7 @@ class _accountinfoState extends State<accountinfo> {
                             child: Text(
                               'Log Out', style: TextStyle(color: Colors.white),),
                             onPressed: () async {
-                              await UserSecureStorage.setStatus('logout');
+                              await shared_prefs.setLoginStatus(false);
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(builder:
                                       (context) =>
@@ -143,12 +163,18 @@ class _accountinfoState extends State<accountinfo> {
                                       backgroundColor:MaterialStateProperty.all<Color>( Colors.red) ),
                                   child:Icon(Icons.delete_outline,size: 30,),
                                   onPressed: ()async {
-                                    await UserSecureStorage.deleteAll();
-                                    Navigator.pushReplacement(context,
-                                        MaterialPageRoute(builder:
-                                            (context) =>
-                                            landingPage()
-                                        ) );
+                                    int status= await services.deleteUser(email_a);
+                                    if(status == 200) {
+                                      SharedPreferences preferences = await SharedPreferences
+                                          .getInstance();
+                                      await preferences.clear();
+                                      await shared_prefs.setLoginStatus(false);
+                                      Navigator.pushReplacement(context,
+                                          MaterialPageRoute(builder:
+                                              (context) =>
+                                              landingPage()
+                                          ));
+                                    }
                                   })),
 
                         ],
@@ -193,6 +219,70 @@ class _accountinfoState extends State<accountinfo> {
                         },
 
                       ),
+                      SizedBox(height: 10.0,),
+                      TextFormField(
+                        controller: old_passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                              gapPadding: 4
+                          ),
+                          labelText: " Password",
+                          hintText: "Example:Apptime@123",
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.visiblePassword,
+
+                        onChanged: (value) {
+                          if (value == null && value.isEmpty && value == '') {
+                            return 'Please enter some text';
+                          }
+
+                          return null;
+                        },
+
+                      ),
+                      SizedBox(height: 10.0,),
+                      TextFormField(
+                        controller: new_passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                              gapPadding: 4
+                          ),
+                          labelText: "New Password",
+                          hintText: "Change:appTime@123",
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.visiblePassword,
+
+                        onChanged: (value) {
+
+
+                          return null;
+                        },
+
+                      ),
+                      SizedBox(height: 10.0,),
+                      TextFormField(
+                        controller: confirm_new_passwordController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(borderRadius:BorderRadius.circular(20),
+                              gapPadding: 4
+                          ),
+                          labelText: "Confirm New Password",
+                          hintText: "Example:appTime@123",
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.visiblePassword,
+
+                        onChanged: (value) {
+                             if(new_passwordController.text != passwordController.text){
+                               return 'new password is not same to this';
+                             }
+
+                          return null;
+                        },
+
+                      ),
                       SizedBox(height:80),
                       Container(
                           height: 50,
@@ -204,17 +294,16 @@ class _accountinfoState extends State<accountinfo> {
                                 backgroundColor:MaterialStateProperty.all<Color>( Colors.white) ),
                             child: Text('Cancel',style: TextStyle(color: Colors.black)),
                             onPressed: ()async{
-                              nameController.text=name_a;
-                              emailController.text=email_a;
-                              await UserSecureStorage.setEmail(email_a);
-                              await UserSecureStorage.setUsername(name_a);
+                              await shared_prefs.saveUsersInfo(name_a,email_a,password_a);
                               setState(() {
                                 print(email_a);
                                 widget.isEditing=false;
                               });
                             },
                           )),
-                      SizedBox(height:20,),
+                      SizedBox(
+                        height:20,),
+
                       Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width*0.75,
@@ -224,15 +313,31 @@ class _accountinfoState extends State<accountinfo> {
                                   backgroundColor:MaterialStateProperty.all<Color>( Color(0xFF4D51BD)) ),
                               child: Text('Edit',style: TextStyle(color: Colors.white),),
                               onPressed: ()async {
-                              if(emailController != null && nameController != null && nameController.text != '' &&  emailController.text != '') {
+                                String pass;
+
+                              if(emailController != null && nameController != null && nameController.text != '' &&  emailController.text != '' && old_passwordController.text != null && old_passwordController.text != '') {
+                                pass=old_passwordController.text;
+                                if(new_passwordController.text != null && new_passwordController.text != ''
+                                && confirm_new_passwordController.text != null && confirm_new_passwordController.text != ''){
+                                  pass=new_passwordController.text;
+                                }
                                 print(nameController.text);
-                                await UserSecureStorage.setEmail(
-                                    emailController.text);
-                                await UserSecureStorage.setUsername(
-                                    nameController.text);
+                                Users users=Users(password: pass,
+                                  name:nameController.text,email: emailController.text);
+                                print("nice:: $users");
+                                int status=await services.updateUser(email_a,users);
+                                if(status != 200){
+                                  emailController.text = email_a;
+                                }
+                                print(status);
                                 setState(() {
                                   widget.isEditing = false;
+
                                 });
+                                old_passwordController.text='';
+                                new_passwordController.text='';
+                                confirm_new_passwordController.text='';
+
                                 }
                               else{
                                 final snackBar = SnackBar(content: Text('Incomplete Field ',style: TextStyle(color:Colors.white),),backgroundColor:Colors.red);

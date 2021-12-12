@@ -3,6 +3,6 @@
 3    package="fr.g123k.deviceapps" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->/home/divy/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/device_apps-2.1.1/android/src/main/AndroidManifest.xml
+5-->C:\Flutter_src\flutter\.pub-cache\hosted\pub.dartlang.org\device_apps-2.1.1\android\src\main\AndroidManifest.xml
 6
 7</manifest>

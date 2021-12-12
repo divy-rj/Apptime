@@ -1,10 +1,10 @@
-fr/g123k/deviceapps/utils/AppDataEventConstants.java
- fr.g123k.deviceapps.utils.AppDataEventConstants
 fr/g123k/deviceapps/AsyncWork.java
  fr.g123k.deviceapps.AsyncWork
 fr/g123k/deviceapps/listener/DeviceAppsChangedListener.java
  fr.g123k.deviceapps.listener.DeviceAppsChangedListener
  fr.g123k.deviceapps.listener.DeviceAppsChangedListener$1
+fr/g123k/deviceapps/utils/AppDataEventConstants.java
+ fr.g123k.deviceapps.utils.AppDataEventConstants
 fr/g123k/deviceapps/utils/DrawableUtils.java
  fr.g123k.deviceapps.utils.DrawableUtils
 fr/g123k/deviceapps/InstalledAppsCallback.java

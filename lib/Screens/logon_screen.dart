@@ -1,7 +1,11 @@
+import 'package:apptime/Services/httpService.dart';
+import 'package:apptime/storage/UsersModel.dart';
 import 'package:apptime/storage/securestorage.dart';
+import 'package:apptime/storage/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
 
@@ -12,6 +16,8 @@ TextEditingController cpasswordController = TextEditingController();
 
 
 class SignupPage extends StatelessWidget {
+  Shared_Prefs shared_prefs=Shared_Prefs();
+  Services services=Services();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,21 +85,27 @@ class SignupPage extends StatelessWidget {
                               if(emailController != null && passwordController != null && cpasswordController != null && nameController != null &&
                                   emailController.text != '' && passwordController.text != '' && cpasswordController.text != '' && nameController.text != '' &&
                                  passwordController.text == cpasswordController.text){
-                                final snackBar = SnackBar(content: Text('Yay! Account Created!!Welcome:  ${nameController.text}!',
-                                  style: TextStyle(color:Colors.white),),backgroundColor:Colors.green);
-                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                await UserSecureStorage.setUsername(nameController.text);
-                                await UserSecureStorage.setPassword(passwordController.text);
-                                await UserSecureStorage.setEmail(emailController.text);
-                                await UserSecureStorage.setStatus('logout');
-                                Navigator.pushReplacement(context,
+
+                                print("Started");
+                                var status=await services.createUser(nameController.text,emailController.text,passwordController.text);
+                                print("Khatam tata goodbye");
+                                if(status == 200){
+                                Navigator.push(context,
                                 MaterialPageRoute(builder:
                                     (context) =>
                                     LoginScreen()
                                 ) );
+                                final snackBar = SnackBar(content: Text('Yay! Account Created!!Welcome:  ${nameController.text}!',
+                                  style: TextStyle(color:Colors.white),),duration: Duration(seconds: 5),backgroundColor:Colors.green);
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                }
+                                else{
+                                  final snackBar = SnackBar(content: Text('Could not send StatusCode:${status}',style: TextStyle(color:Colors.white),),backgroundColor:Colors.red,duration: Duration(seconds: 5),);
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                }
                               }
                               else{
-                                final snackBar = SnackBar(content: Text('Incomplete Field ',style: TextStyle(color:Colors.white),),backgroundColor:Colors.red);
+                                final snackBar = SnackBar(content: Text('Incomplete Field ',style: TextStyle(color:Colors.white),),duration: Duration(seconds: 5),backgroundColor:Colors.red);
                                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                               }
                             },
@@ -211,8 +223,7 @@ class _formFieldState extends State<formField> {
                 if (value == null && value.isEmpty && value == '') {
                   return 'Please enter some text';
                 }
-                return value.length <8 ? 'Your Password is too small':null;
-                return null;
+                return value.length <8 ? 'Your Password is too small' :null;
               },
             ),
             SizedBox(height: 10.0,),
@@ -226,15 +237,18 @@ class _formFieldState extends State<formField> {
                 hintText: "Example:Apptime@0202",
               ),
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              obscureText: true,
+              obscureText: false,
               keyboardType: TextInputType.visiblePassword,
               validator: (value) {
                 if (value == null && value.isEmpty && value == '') {
                   return 'Please enter some text';
                 }
-                if(passwordController.text != cpasswordController){
+                if(passwordController.text != cpasswordController.text){
+                  print(passwordController.text);
+                  print(cpasswordController.text);
                   return 'Both Passwords not equal';
                 }
+
                 return null;
               },
             ),
@@ -244,3 +258,4 @@ class _formFieldState extends State<formField> {
     );
   }
 }
+

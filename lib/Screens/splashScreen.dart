@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:apptime/storage/UsersModel.dart';
 import 'package:apptime/storage/securestorage.dart';
+import 'package:apptime/storage/storage.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
 import 'login_screen.dart';
@@ -18,17 +21,22 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   String name;
+  bool isLogin=false;
+  Shared_Prefs shared_prefs=Shared_Prefs();
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3),
             () async{
       await init();
-      if(name != 'login'){
+      // final SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isLogin=await shared_prefs.getLoginStatus()??false;
+      print(isLogin);
+      if(isLogin != false ){
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
-                landingPage()
+                    MyHomePage()
               )
           );
          }
@@ -36,7 +44,8 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
-                MyHomePage()
+
+                landingPage()
             )
         );
       }
@@ -44,9 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
   Future init()async {
-    name = await UserSecureStorage.getStatus();
+    bool login=await shared_prefs.getLoginStatus()?? false;
     setState(() {
-      this.name = name;
+      this.isLogin = login;
     });
   }
   @override
@@ -74,7 +83,7 @@ class _landingPageState extends State<landingPage>  with SingleTickerProviderSta
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
-        milliseconds: 200,
+        milliseconds: 500,
       ),
       lowerBound: 0.0,
       upperBound: 0.1,
