@@ -5,7 +5,7 @@ import 'package:apptime/storage/securestorage.dart';
 import 'package:apptime/storage/storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:objectid/objectid.dart';
-const baseUrl='http://10.0.2.2:3010/';
+const baseUrl='https://apptime10.herokuapp.com/';
 class Services{
   Shared_Prefs shared_prefs=Shared_Prefs();
   UserSecureStorage userSecureStorage=UserSecureStorage();
@@ -34,7 +34,7 @@ class Services{
   Future<int> loginUser(Users users)async {
     try {
       var response = await http.post(
-        Uri.parse("http://10.0.2.2:3010/user/authentication"),
+        Uri.parse("${baseUrl}user/authentication"),
         body: jsonEncode(<String, String>{
           "email": users.email,
           "password": users.password

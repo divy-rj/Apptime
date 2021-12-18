@@ -41,7 +41,7 @@ class GetApps{
       for(var app in apps) {
         if (info.appName != 'apptime' && info.packageName == app.packageName) {
           //   //
-          apps_sent=App(appName: app.appName, appUsage: info.usage.toString().substring(0,(info.usage.toString().length)-7));
+          apps_sent=App(appName: app.appName, appUsage: info.appName.toString().substring(0,(info.usage.toString().length)-7));
           app_final.add(apps_sent);
         }
       }

@@ -87,7 +87,7 @@ void main()  {
   // See https://flutter.io/testing/ for more info. ]
   // try {
     WidgetsFlutterBinding.ensureInitialized();
-    Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+    Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
     Workmanager().registerPeriodicTask(
         "2", myTask, frequency: Duration(minutes: 15), constraints: Constraints(
       networkType: NetworkType.connected,));
