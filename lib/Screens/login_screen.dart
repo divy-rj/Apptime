@@ -106,12 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   MyHomePage()
                               ) ); }
                          else{
-                           // final snackBar = SnackBar(content: Text('Login Failed'));
-                           // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                           Navigator.pushReplacement(context,
-                               MaterialPageRoute(builder:
-                               (context) =>
-                               MyHomePage() ) );
+                           final snackBar = SnackBar(content: Text('Login Failed'));
+                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                          }
                         },
                       )),
