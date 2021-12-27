@@ -78,7 +78,8 @@ class Services{
   }
   Future<int> deleteUser(String email)async{
     try{
-      var response=await http.delete(Uri.parse('${baseUrl}user/delete'),body:jsonEncode(<String,String>{
+      var response=await http.delete(Uri.parse('${baseUrl}user/delete'),
+          body:jsonEncode(<String,String>{
         "email": email,
       }), headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',});

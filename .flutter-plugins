@@ -1,5 +1,6 @@
 # This is a generated file; do not edit or check into version control.
 app_usage=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\app_usage-2.0.0\\
+awesome_notifications=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\awesome_notifications-0.0.6+12\\
 background_fetch=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\background_fetch-1.0.1\\
 device_apps=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\device_apps-2.1.1\\
 device_info=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\device_info-2.0.3\\
@@ -11,4 +12,5 @@ shared_preferences_linux=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartl
 shared_preferences_macos=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-2.0.2\\
 shared_preferences_web=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-2.0.1\\
 shared_preferences_windows=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_windows-2.0.2\\
+sqflite=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sqflite-2.0.1\\
 workmanager=C:\\Flutter_src\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\workmanager-0.3.0\\

@@ -31,23 +31,28 @@ dependencies:
   app_usage: ^2.0.0
   avatar_glow: any
   flutter_gifimage: ^1.0.0
-  image: ^3.0.2
+#  image: ^3.0.2
   fl_chart: ^0.36.3
+  awesome_notifications: ^0.0.5+8
+  numberpicker: ^2.1.1
   syncfusion_flutter_charts: ^19.2.51
-  flutter_secure_storage: ^4.2.1
+  flutter_secure_storage:
   curved_navigation_bar: ^1.0.1
-  device_apps: ^2.1.1
+  device_apps:
   flutter_svg: ^0.22.0
   http: ^0.13.3
   background_fetch: ^1.0.1
+  provider:
   shared_preferences: ^2.0.6
   workmanager: ^0.3.0
   objectid: ^2.0.0
-  device_info: ^2.0.3
+  device_info:
+  moor_flutter: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  moor_generator:
+  build_runner:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

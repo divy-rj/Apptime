@@ -1,6 +1,7 @@
 import 'package:apptime/storage/UsersModel.dart';
 import 'package:apptime/storage/securestorage.dart';
 import 'package:apptime/storage/storage.dart';
+import 'package:apptime/Services/httpService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,8 +22,10 @@ class _LoginScreenState extends State<LoginScreen> {
     TextEditingController nameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
      String email;
+     String name;
      String password;
      Shared_Prefs shared_prefs=Shared_Prefs();
+    Services services=Services();
      @override
   void initState() {
     // TODO: implement initState
@@ -30,8 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
     init();
   }
   Future init()async{
+
     Users user=await shared_prefs.getUsersInfo();
     setState(() {
+       this.name=user.name;
       this.email=user.email;
       this.password=user.password;
     });
@@ -96,15 +101,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         //style: ButtonStyle(backgroundColor: Color(0xFF8185E2)),
                         child: Text('Login'),
                         onPressed: ()async{
-                         if (nameController.text == email && passwordController.text == password) {
+                         if (nameController.text != null && passwordController.text != null) {
                            await shared_prefs.setLoginStatus(true);
-                           bool isLogin=await shared_prefs.getLoginStatus()??false;
-                           print(isLogin);
+                           Users user =Users(name: name,email: nameController.text,password: passwordController.text);
+                          int a= await services.loginUser(user);
+                          if(a == 200)
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder:
                                   (context) =>
                                   MyHomePage()
-                              ) ); }
+                              ) );
+                            else{
+                            final snackBar = SnackBar(content: Text('Login Error!!'));
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                          }
+                         }
                          else{
                            final snackBar = SnackBar(content: Text('Login Failed'));
                            ScaffoldMessenger.of(context).showSnackBar(snackBar);

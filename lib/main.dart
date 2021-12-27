@@ -4,6 +4,7 @@ import 'package:apptime/storage/UsersModel.dart';
 import 'package:apptime/storage/app_list.dart';
 import 'package:apptime/storage/storage.dart';
 import 'package:apptime/widget/getusage.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:workmanager/workmanager.dart';
 
 import 'Services/httpService.dart';
 const myTask="syncDatabase";
+const notificationTask="checkForNotification";
 void callbackDispatcher()async{
 
   Shared_Prefs  shared_prefs= new Shared_Prefs();
@@ -44,53 +46,42 @@ void callbackDispatcher()async{
         try {
           int status = await services.loginUser(users);
           print(status);
+          return Future.value(true);
         } catch (e) {
           print(e);
           return Future.error(e);
         }
-        List<App>  app_sent=[];
-        DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        print('Running on ${androidInfo.device}');
-        List apps = await DeviceApps.getInstalledApplications(onlyAppsWithLaunchIntent: true,
-            includeAppIcons: true, includeSystemApps: true);
-        List<AppUsageInfo> infoList = await getUsageStats(0);
-        app_sent=await GetApps().getApps_sent(infoList, apps);
-        Data data=Data(email: users.email,dateTime: DateTime.now(),
-            apps: app_sent,deviceName: androidInfo.model);
-        // shared_prefs.saveData(app_sent,androidInfo.device,users.email);
-        // print("here123");
-        // Data d=Data();
-        // d=shared_prefs.getData() as Data;
-        // print(d);
-      }
-      print("${DateTime.now()}Ended data sending1");
 
-      return Future.value(true);
+      }
+
+      return Future.value(false);
     });
 
-    // }
-    //     catch(e){
-    //   print(e);
-    // }
-    //
-
-    print("Ended data sending2");
-  // }
-  // else{
-  //   print("Not loggedin");
-  // }
 }
 
 void main()  {
   // Enable integration testing with the Flutter Driver extension.
   // See https://flutter.io/testing/ for more info. ]
   // try {
+  AwesomeNotifications awesome=new AwesomeNotifications();
+  awesome.initialize(
+      null,[
+    NotificationChannel(
+        channelKey:'basic_channel',
+        channelName: 'Basic Notifications',
+        defaultColor: Colors.teal,
+        importance:NotificationImportance.High,
+        channelShowBadge: true
+    )
+  ]
+  );
     WidgetsFlutterBinding.ensureInitialized();
     Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
     Workmanager().registerPeriodicTask(
-        "2", myTask, frequency: Duration(minutes: 15), constraints: Constraints(
+        "2", myTask, frequency: Duration(minutes:30), constraints: Constraints(
       networkType: NetworkType.connected,));
+  Workmanager().registerPeriodicTask(
+      "2", notificationTask, frequency: Duration(minutes: 15));
 
   // }catch(e){
   //   print("${DateTime.now()} \n $e");
@@ -106,7 +97,9 @@ class MyApp extends StatelessWidget {
       debugShowMaterialGrid: false,
       checkerboardRasterCacheImages: false,
       checkerboardOffscreenLayers: false,
-
+      theme: ThemeData(
+        primaryColor: Color(0xFF4D51BD), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF4D51BD),)
+      ),
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );

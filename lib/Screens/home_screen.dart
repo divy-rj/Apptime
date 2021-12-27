@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:apptime/Screens/parentalControl.dart';
 import 'package:apptime/Services/httpService.dart';
 import 'package:apptime/page/pie_chart_page.dart';
 import 'package:apptime/storage/App_Db.dart';
 import 'package:apptime/storage/storage.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:app_usage/app_usage.dart';
 import 'package:apptime/storage/app_list.dart';
@@ -41,7 +43,7 @@ class GetApps{
       for(var app in apps) {
         if (info.appName != 'apptime' && info.packageName == app.packageName) {
           //   //
-          apps_sent=App(appName: app.appName, appUsage: info.appName.toString().substring(0,(info.usage.toString().length)-7));
+          apps_sent=App(appName: app.appName, appUsage: info.usage.toString().substring(0,(info.usage.toString().length)-7));
           app_final.add(apps_sent);
         }
       }
@@ -62,7 +64,7 @@ List<Apps> list_apps=[];
 List<App>  app_final=[];
 App apps_sent;
 class _MyHomePageState extends State<MyHomePage> {
-
+  AwesomeNotifications awesome=AwesomeNotifications();
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   DateTime total_screentime;
@@ -70,8 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     getUsage();
+    
     super.initState();
+    
+    notification();
      init();
+
   }
 
   Future init()async{
@@ -80,7 +86,34 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
   }
-
+  Future notification() async {
+    await awesome.isNotificationAllowed().then((isAllowed){
+      if(!isAllowed){
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title:Text('Allow Notifications'),
+            content: Text('The app needs to send you notifications'),
+            actions: [
+              TextButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: Text('Don\'t allow',style: TextStyle(color: Colors.blue,fontSize: 18),),
+              ),
+              TextButton(
+                onPressed: ()=>AwesomeNotifications()
+                    .requestPermissionToSendNotifications()
+                    .then((_)=>Navigator.pop(context)),
+                child:Text('Allow',style: TextStyle(color: Colors.blue,fontSize: 18)),
+              )
+            ],
+          ),
+        );
+        // awesome.requestPermissionToSendNotifications();
+      }
+    });
+  }
   Future<void> getApp() async{
     List apps = await DeviceApps.getInstalledApplications(onlyAppsWithLaunchIntent: true,
         includeAppIcons: true, includeSystemApps: true);
@@ -111,7 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color(0xFF4D51BD),
         ),
 
-
         body: Builder(
 
             builder: (context) {
@@ -119,8 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
              if(_page ==0 ){
                return homescreen(list_apps,_apps);
              }
-             else if(_page == 1){
+             else if(_page == 2){
                return accountinfo(isEditing: false,);
+             }
+             else if(_page == 1){
+               return ParentalControl(app_sent: list_apps,);
              }
              else{
                return homescreen(list_apps,_apps);
@@ -132,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
           items: <Widget>[
             Icon(Icons.home, size: 30,color: Colors.white,),
             // Icon(Icons.list, size: 30),
-            // Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.circle_notifications_outlined, size: 30,color: Colors.white,),
             // Icon(Icons.home, size: 30,color: Colors.white,),
             Icon(Icons.person, size: 30,color: Colors.white,),
           ],

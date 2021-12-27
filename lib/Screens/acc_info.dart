@@ -315,7 +315,8 @@ class _accountinfoState extends State<accountinfo> {
                               onPressed: ()async {
                                 String pass;
 
-                              if(emailController != null && nameController != null && nameController.text != '' &&  emailController.text != '' && old_passwordController.text != null && old_passwordController.text != '') {
+                              if(emailController != null && nameController != null && nameController.text != '' &&  emailController.text != '' && old_passwordController.text != null && old_passwordController.text != '' &&
+                                  old_passwordController.text == password) {
                                 pass=old_passwordController.text;
                                 if(new_passwordController.text != null && new_passwordController.text != ''
                                 && confirm_new_passwordController.text != null && confirm_new_passwordController.text != ''){
